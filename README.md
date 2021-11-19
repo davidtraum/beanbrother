@@ -1,4 +1,8 @@
 # smartcoffee
 
 The revolutionary app improving your daily coffee experience.
-Test2
+
+
+## Deploy
+Automatischer Build bei Push:
+https://smartcoffe.traum.me
