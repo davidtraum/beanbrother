@@ -1,0 +1,7 @@
+{
+  "name": "smartcoffee",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
