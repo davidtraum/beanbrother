@@ -30,6 +30,7 @@ class DesignService {
             document.body.classList.remove('dark');
         }
         StorageService.set('darkmode', `${status}`);
+        this.status.dark = status;
     }
 }
 
