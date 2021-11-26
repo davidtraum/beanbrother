@@ -19,7 +19,7 @@ class DesignService {
 
     constructor() {
         StorageService.get('darkmode', 'false').then(value => {
-            this.status.dark = value === 'true';
+            this.setDarkMode(value === 'true');
         });
     }
 
