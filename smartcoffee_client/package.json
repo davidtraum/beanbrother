@@ -19,6 +19,7 @@
     "@capacitor/storage": "^1.2.3",
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
+    "@ionited/tooltip-vue": "^0.1.2",
     "@vue/cli": "^4.5.15",
     "core-js": "^3.6.5",
     "vue": "^3.2.1",

@@ -13,7 +13,7 @@
           </ion-toolbar>
       </ion-header>
       <ion-content>
-
+          <create-button />
       </ion-content>
   </ion-page>
 </template>
@@ -38,6 +38,9 @@ import {
   IonContent,
   menuController,
 } from "@ionic/vue";
+
+import CreateButton from "../generic/CreateButton.vue";
+
 export default defineComponent({
   name: "Home",
   components: {
@@ -49,6 +52,7 @@ export default defineComponent({
     IonIcon,
     IonTitle,
     IonContent,
+    CreateButton
   },
   setup() {
       return {
