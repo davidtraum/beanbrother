@@ -1,6 +1,6 @@
 
 <template>
-  <ion-menu side="start" menu-id="main" content-id="main">
+  <ion-menu side="end" menu-id="main" content-id="main">
     <ion-header>
       <ion-toolbar>
         <ion-title> Menü </ion-title>
@@ -17,6 +17,29 @@
         </ion-item>
       </ion-list>
     </ion-content>
+    <ion-footer class="ion-no-border">
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+            <ion-img
+              style="width: 88px"
+              :src="require('../../../src/assets/LogoBlue.png')"
+            ></ion-img>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+            <ion-text style="color: #744630">
+              <h2>SmartCoffee™</h2>
+            </ion-text>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-footer>
   </ion-menu>
 </template>
 
@@ -40,7 +63,6 @@ import {
   IonToggle,
 } from "@ionic/vue";
 
-
 import DesignService from "../../service/DesignService";
 
 export default defineComponent({
@@ -58,13 +80,13 @@ export default defineComponent({
   },
   setup() {
     return {
-      DesignService
+      DesignService,
     };
   },
   methods: {
-      onToggleDarkmode(event: CustomEvent) {
-          DesignService.setDarkMode(event.detail.checked);
-      }
-  }
+    onToggleDarkmode(event: CustomEvent) {
+      DesignService.setDarkMode(event.detail.checked);
+    },
+  },
 });
 </script>
