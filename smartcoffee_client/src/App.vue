@@ -9,7 +9,7 @@
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
-import MainMenu from "./components/home/MainMenu.vue";
+import MainMenu from "./components/MainMenu.vue";
 
 export default defineComponent({
   name: 'App',
@@ -20,3 +20,12 @@ export default defineComponent({
   }
 });
 </script>
+
+<style>
+.transition {
+  transition: 300ms;
+}
+.hidden {
+  opacity: 0;
+}
+</style>

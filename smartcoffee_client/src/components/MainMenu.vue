@@ -24,7 +24,7 @@
           <ion-col>
             <ion-img
               style="width: 88px"
-              :src="require('../../../src/assets/LogoBlue.png')"
+              :src="require('../../src/assets/LogoBlue.png')"
             ></ion-img>
           </ion-col>
           <ion-col></ion-col>
@@ -63,7 +63,7 @@ import {
   IonToggle,
 } from "@ionic/vue";
 
-import DesignService from "../../service/DesignService";
+import DesignService from "../service/DesignService";
 
 export default defineComponent({
   name: "MainMenu",
