@@ -60,7 +60,7 @@ export default defineComponent({
     clearStorage() {
         alertController.create({
             header: 'Speicher',
-            message: 'Möchtest du den gesamten Speicherinhalt löschen?',
+            message: 'Möchtest du den gesamten Speicherinhalt löschen? (Name, Rezepte...)',
             buttons: [
                 {role: 'abort', text: 'Abbrechen'},
                 {role: 'destructive', text: 'Ja'}
