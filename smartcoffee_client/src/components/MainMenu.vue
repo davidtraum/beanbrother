@@ -18,9 +18,8 @@
         </ion-item>
         <ion-item @click="openSettings()">
           <ion-icon :icon="settingsSharp" class="menuIcon" />
-          <ion-label class="ion-activatable" expand="full"
-            ><ion-ripple-effect /> Einstellungen</ion-label
-          >
+          <ion-label expand="full"> Einstellungen</ion-label>
+          <ion-ripple-effect />
         </ion-item>
       </ion-list>
     </ion-content>
@@ -114,7 +113,6 @@ export default defineComponent({
   margin: auto;
 }
 .menuIcon {
-  margin-right: 3px;
   height: 14px;
 }
 </style>
