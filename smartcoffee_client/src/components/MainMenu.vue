@@ -18,27 +18,14 @@
       </ion-list>
     </ion-content>
     <ion-footer class="ion-no-border">
-      <ion-grid>
-        <ion-row>
-          <ion-col></ion-col>
-          <ion-col>
-            <ion-img
-              style="width: 88px"
-              :src="require('@/assets/LogoBlue.png')"
-            ></ion-img>
-          </ion-col>
-          <ion-col></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col></ion-col>
-          <ion-col>
-            <ion-text style="color: #744630">
-              <h2>BeanBrother™</h2>
-            </ion-text>
-          </ion-col>
-          <ion-col></ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-img
+        class="watermark"
+        style="width: 125px"
+        :src="require('@/assets/LogoWithHeader.png')"
+      ></ion-img>
+      <ion-text class="version">
+        <p>Version 0.0.1</p>
+      </ion-text>
     </ion-footer>
   </ion-menu>
 </template>
@@ -90,3 +77,13 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss" scoped>
+.version {
+  color: #4d4d4d;
+  text-align: center;
+}
+.watermark {
+  display: block;
+  margin: auto;
+}
+</style>
