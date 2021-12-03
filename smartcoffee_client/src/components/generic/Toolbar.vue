@@ -1,14 +1,14 @@
 <template>
   <ion-toolbar mode="md">
     <ion-img
-      :src="require('@/assets/LogoBlue.png')"
+      :src="require('@/assets/ToolbarLogo.png')"
       style="width: 32px; margin-left: 10px"
       slot="start"
     ></ion-img>
-    <ion-title> {{ title }} </ion-title>
+    <ion-title style="padding-left: 10px"> {{ title }} </ion-title>
     <ion-buttons slot="end">
       <ion-button @click="openMenu()">
-        <ion-icon :icon="menuOutline" />
+        <ion-icon :icon="menu" />
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -19,7 +19,7 @@
  * @author dtraum
  * @date 03.12.2021
  */
-import { menuOutline } from "ionicons/icons";
+import { menu } from "ionicons/icons";
 import { menuController } from "@ionic/core";
 import { defineComponent } from "vue";
 
@@ -29,7 +29,7 @@ import {
   IonButtons,
   IonIcon,
   IonTitle,
-  IonImg
+  IonImg,
 } from "@ionic/vue";
 
 export default defineComponent({
@@ -45,10 +45,10 @@ export default defineComponent({
     IonButtons,
     IonIcon,
     IonTitle,
-    IonImg
+    IonImg,
   },
   setup() {
-    return { menuOutline };
+    return { menu };
   },
   methods: {
     openMenu() {

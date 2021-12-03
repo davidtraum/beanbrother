@@ -31,10 +31,15 @@
       </ion-item>
       <ion-item>
         <ion-label> Speichern </ion-label>
-        <ion-toggle v-model="brewInfo.save" />
+        <ion-toggle slot="end" v-model="brewInfo.save" />
       </ion-item>
       <ion-item>
-        <ion-button slot="end" @click="startBrew()" :disabled="submittedBrew">
+        <ion-button
+          size="default"
+          slot="end"
+          @click="startBrew()"
+          :disabled="submittedBrew"
+        >
           <ion-label>Kaffee brauen</ion-label>
           <ion-icon :icon="colorFillOutline" slot="end" />
         </ion-button>
