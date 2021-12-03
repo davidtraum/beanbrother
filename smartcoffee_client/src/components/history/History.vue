@@ -1,6 +1,6 @@
 <template>
     <ion-page>
-
+        <toolbar title="Verlauf" />
     </ion-page>
 </template>
 
@@ -11,10 +11,13 @@
  */
 import {IonPage} from "@ionic/vue";
 
+import Toolbar from "../generic/Toolbar.vue";
+
 export default {
     name: 'History',
     components: {
-        IonPage
+        IonPage,
+        Toolbar
     },
     setup() {
         return {};

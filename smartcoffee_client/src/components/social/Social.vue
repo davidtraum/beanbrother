@@ -1,25 +1,16 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-img
-          :src="require('@/assets/LogoBlue.png')"
-          style="width: 32px; margin-left: 10px"
-          slot="start"
-        ></ion-img>
-        <ion-title> Social </ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <toolbar title="Social" />
     <ion-content>
-      <div style="display: flex; justify-content: center">
-        <img src="@/assets/graphic/shop.jpg" style="max-width: 300px" />
-      </div>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title> Finde deine Bean-Brothers! </ion-card-title>
-          <ion-card-subtitle>Und Bean-Sisters!</ion-card-subtitle>
-        </ion-card-header>
-      </ion-card>
+        <div style="display: flex; justify-content: center">
+          <img src="@/assets/graphic/shop.jpg" style="max-width: 300px" />
+        </div>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title> Finde deine Bean-Brothers! </ion-card-title>
+            <ion-card-subtitle>Und Bean-Sisters!</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
     </ion-content>
   </ion-page>
 </template>
@@ -31,24 +22,23 @@
  */
 import {
   IonPage,
-  IonHeader,
-  IonTitle,
   IonContent,
   IonCard,
   IonCardHeader,
   IonCardTitle,
 } from "@ionic/vue";
 
+import Toolbar from "../generic/Toolbar.vue";
+
 export default {
   name: "Social",
   components: {
     IonPage,
-    IonHeader,
-    IonTitle,
     IonContent,
     IonCard,
     IonCardHeader,
     IonCardTitle,
+    Toolbar
   },
   setup() {
     return {};

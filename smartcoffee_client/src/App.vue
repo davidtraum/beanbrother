@@ -21,11 +21,19 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
 .transition {
   transition: 300ms;
 }
 .hidden {
   opacity: 0;
+}
+.bg {
+  background-position: center;
+  background-size: cover;
+}
+.bg-0 {
+  @extend .bg;
+  background-image: url(./assets/graphic/spoons.jpg);
 }
 </style>

@@ -1,19 +1,7 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
-        <ion-img
-          :src="require('@/assets/LogoBlue.png')"
-          style="width: 32px; margin-left: 10px"
-          slot="start"
-        ></ion-img>
-        <ion-title> Kaffee brauen </ion-title>
-        <ion-buttons slot="end">
-          <ion-button @click="openMenu()">
-            <ion-icon :icon="menu" />
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
+      <toolbar title="Kaffee brauen" />
     </ion-header>
     <ion-content>
       <ion-card style="max-width: 600px" class="brew-card">
@@ -74,11 +62,7 @@ import { menu, cafeOutline, sendOutline } from "ionicons/icons";
 import {
   IonPage,
   IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonButton,
   IonIcon,
-  IonTitle,
   IonContent,
   IonCard,
   IonItem,
@@ -92,10 +76,10 @@ import {
   IonCardContent,
   IonToggle,
   menuController,
-  IonImg,
 } from "@ionic/vue";
 
 import CreateButton from "../generic/CreateButton.vue";
+import Toolbar from "../generic/Toolbar.vue";
 
 interface BrewInfo {
   title: string;
@@ -108,9 +92,6 @@ export default defineComponent({
   components: {
     IonPage,
     IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonButton,
     IonIcon,
     IonCard,
     IonToggle,
@@ -123,10 +104,9 @@ export default defineComponent({
     IonCardTitle,
     IonCardSubtitle,
     IonCardContent,
-    IonTitle,
     IonContent,
     CreateButton,
-    IonImg,
+    Toolbar
   },
   setup() {
     const brewInfo: BrewInfo = reactive({
