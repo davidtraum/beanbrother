@@ -9,11 +9,18 @@
     <ion-content>
       <ion-list>
         <ion-item>
-          <ion-label> Dunkles Design </ion-label>
+          <ion-icon :icon="contrastSharp" class="menuIcon" />
+          <ion-label>Dunkles Design</ion-label>
           <ion-toggle
             @ionChange="onToggleDarkmode($event)"
             :checked="DesignService.status.dark"
           />
+        </ion-item>
+        <ion-item>
+          <ion-icon :icon="settingsSharp" class="menuIcon" />
+          <ion-label class="ion-activatable" expand="full"
+            ><ion-ripple-effect /> Einstellungen</ion-label
+          >
         </ion-item>
       </ion-list>
     </ion-content>
@@ -54,6 +61,8 @@ import {
 } from "@ionic/vue";
 
 import DesignService from "../service/DesignService";
+import { contrastSharp, settingsSharp } from "ionicons/icons";
+import { IonIcon } from "@ionic/vue";
 
 export default defineComponent({
   name: "MainMenu",
@@ -70,10 +79,13 @@ export default defineComponent({
     IonFooter,
     IonImg,
     IonContent,
+    IonIcon,
   },
   setup() {
     return {
       DesignService,
+      contrastSharp,
+      settingsSharp,
     };
   },
   methods: {
@@ -91,5 +103,9 @@ export default defineComponent({
 .watermark {
   display: block;
   margin: auto;
+}
+.menuIcon {
+  margin-right: 3px;
+  height: 14px;
 }
 </style>
