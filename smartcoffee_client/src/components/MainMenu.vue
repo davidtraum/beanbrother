@@ -16,7 +16,7 @@
             :checked="DesignService.status.dark"
           />
         </ion-item>
-        <ion-item>
+        <ion-item @click="openSettings()">
           <ion-icon :icon="settingsSharp" class="menuIcon" />
           <ion-label class="ion-activatable" expand="full"
             ><ion-ripple-effect /> Einstellungen</ion-label
@@ -57,12 +57,14 @@ import {
   IonFooter,
   IonToggle,
   IonImg,
-  IonText
+  IonText,
+  modalController
 } from "@ionic/vue";
 
 import DesignService from "../service/DesignService";
 import { contrastSharp, settingsSharp } from "ionicons/icons";
 import { IonIcon } from "@ionic/vue";
+import SettingsModal from "./settings/SettingsModal.vue";
 
 export default defineComponent({
   name: "MainMenu",
@@ -92,6 +94,13 @@ export default defineComponent({
     onToggleDarkmode(event: CustomEvent) {
       DesignService.setDarkMode(event.detail.checked);
     },
+    openSettings() {
+      modalController.create({
+        component: SettingsModal
+      }).then(modal => {
+        modal.present();
+      });
+    }
   },
 });
 </script>
