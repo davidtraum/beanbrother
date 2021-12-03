@@ -13,6 +13,13 @@
         <ion-label>Speicher</ion-label>
         <ion-button color="danger" @click="clearStorage()">Leeren</ion-button>
       </ion-item>
+      <ion-item>
+          <ion-label>Name:</ion-label>
+          <ion-input v-model="nameInput" />
+          <ion-button @click="saveName" :disabled="nameInput.length < 2 || nameInput.length > 30 || nameInput === StorageService.data.name">
+              {{nameInput === StorageService.data.name ? 'Gespeichert' : 'Speichern'}}
+          </ion-button>
+      </ion-item>
     </ion-content>
   </ion-page>
 </template>
@@ -22,7 +29,7 @@
  * @author dtraum
  * @date 03.12.2021
  */
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 import { close, settings } from "ionicons/icons";
 import {
@@ -34,6 +41,7 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
+  IonInput,
   IonLabel,
   alertController,
 } from "@ionic/vue";
@@ -45,13 +53,14 @@ export default defineComponent({
     IonContent,
     IonToolbar,
     IonTitle,
+    IonInput,
     IonButtons,
     IonButton,
     IonIcon,
     IonLabel,
   },
   setup() {
-    return { close, settings };
+    return { close, settings, StorageService, nameInput: ref(StorageService.data.name) };
   },
   methods: {
     dismiss() {
@@ -74,6 +83,9 @@ export default defineComponent({
                 });
             });
         })
+    },
+    async saveName() {
+        await StorageService.setName(this.nameInput);
     }
   },
 });

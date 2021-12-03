@@ -27,10 +27,11 @@
         </ion-item>
       </ion-list>
     </ion-content>
-    <ion-footer class="ion-no-border">
+    <ion-footer class="ion-no-border" ref="footer">
       <ion-img
         class="watermark"
         style="width: 125px"
+        :class="{ 'move-out': !visible }"
         :src="require('@/assets/LogoWithHeader.png')"
       ></ion-img>
       <ion-text class="version">
@@ -46,7 +47,7 @@
 @date 26.11.2021
  */
 
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 import {
   IonMenu,
@@ -58,10 +59,12 @@ import {
   IonLabel,
   IonContent,
   IonFooter,
+  IonRippleEffect,
   IonToggle,
   IonImg,
   IonText,
   modalController,
+  menuController,
 } from "@ionic/vue";
 
 import DesignService from "../service/DesignService";
@@ -83,6 +86,7 @@ export default defineComponent({
     IonToggle,
     IonText,
     IonFooter,
+    IonRippleEffect,
     IonImg,
     IonContent,
     IonIcon,
@@ -94,6 +98,7 @@ export default defineComponent({
       contrastSharp,
       settingsSharp,
       person,
+      visible: ref(false),
     };
   },
   computed: {
@@ -101,11 +106,23 @@ export default defineComponent({
       return StorageService.data.name;
     },
   },
+  mounted() {
+    const observer = new IntersectionObserver(
+      (event) => {
+        this.visible = event[0].isIntersecting;
+      },
+      {
+        threshold: 0.9,
+      }
+    );
+    observer.observe((this.$refs.footer as any).$el);
+  },
   methods: {
     onToggleDarkmode(event: CustomEvent) {
       DesignService.setDarkMode(event.detail.checked);
     },
     openSettings() {
+      menuController.close("main");
       modalController
         .create({
           component: SettingsModal,
@@ -125,6 +142,11 @@ export default defineComponent({
 .watermark {
   display: block;
   margin: auto;
+  transition: 800ms;
+  &.move-out {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 .menuIcon {
   height: 14px;
