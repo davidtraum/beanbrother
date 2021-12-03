@@ -12,6 +12,7 @@
       <ion-card>
         <ion-card-header>
           <ion-card-title> Finde deine Bean-Brothers! </ion-card-title>
+          <ion-card-subtitle>Und Bean-Sisters!</ion-card-subtitle>
         </ion-card-header>
       </ion-card>
     </ion-content>
