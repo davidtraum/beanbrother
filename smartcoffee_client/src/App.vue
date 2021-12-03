@@ -6,10 +6,12 @@
 </template>
 
 <script lang="ts">
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import { IonApp, IonRouterOutlet, modalController } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
 import MainMenu from "./components/MainMenu.vue";
+import StorageService from './service/StorageService';
+import WelcomeModal from "./components/welcome/WelcomeModal.vue";
 
 export default defineComponent({
   name: 'App',
@@ -17,6 +19,16 @@ export default defineComponent({
     IonApp,
     IonRouterOutlet,
     MainMenu
+  },
+  mounted() {
+    StorageService.get('name', 'unset').then(name => {
+      if(name === 'unset') {
+        modalController.create({
+          component: WelcomeModal,
+          backdropDismiss: false
+        }).then(modal => modal.present());
+      }
+    });
   }
 });
 </script>
