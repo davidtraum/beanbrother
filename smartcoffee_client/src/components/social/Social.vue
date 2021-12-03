@@ -3,7 +3,7 @@
     <toolbar title="Social" />
     <ion-content>
         <div style="display: flex; justify-content: center">
-          <img src="@/assets/graphic/shop.jpg" style="max-width: 300px" />
+          <img src="@/assets/graphic/shop.png" style="max-width: 300px" />
         </div>
         <ion-card>
           <ion-card-header>
