@@ -3,16 +3,16 @@
     <ion-header>
       <ion-toolbar>
         <ion-img
-          :src="require('../../../src/assets/LogoBlue.png')"
+          :src="require('@/assets/LogoBlue.png')"
           style="width: 32px; margin-left: 10px"
           slot="start"
         ></ion-img>
+        <ion-title> Kaffee brauen </ion-title>
         <ion-buttons slot="end">
           <ion-button @click="openMenu()">
             <ion-icon :icon="menu" />
           </ion-button>
         </ion-buttons>
-        <ion-title> SmartCoffee </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -41,7 +41,11 @@
             <ion-toggle v-model="brewInfo.save" />
           </ion-item>
           <ion-item>
-            <ion-button slot="end" @click="startBrew()" :disabled="submittedBrew">
+            <ion-button
+              slot="end"
+              @click="startBrew()"
+              :disabled="submittedBrew"
+            >
               <ion-label>Kaffee brauen</ion-label>
               <ion-icon :icon="sendOutline" slot="end" />
             </ion-button>

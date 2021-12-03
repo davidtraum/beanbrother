@@ -3,7 +3,7 @@
   <ion-menu side="end" menu-id="main" content-id="main">
     <ion-header>
       <ion-toolbar>
-        <ion-title> Menü </ion-title>
+        <ion-title> Beanü </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -24,7 +24,7 @@
           <ion-col>
             <ion-img
               style="width: 88px"
-              :src="require('../../src/assets/LogoBlue.png')"
+              :src="require('@/assets/LogoBlue.png')"
             ></ion-img>
           </ion-col>
           <ion-col></ion-col>
@@ -33,7 +33,7 @@
           <ion-col></ion-col>
           <ion-col>
             <ion-text style="color: #744630">
-              <h2>SmartCoffee™</h2>
+              <h2>BeanBrother™</h2>
             </ion-text>
           </ion-col>
           <ion-col></ion-col>

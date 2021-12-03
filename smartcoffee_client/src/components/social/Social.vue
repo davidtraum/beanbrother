@@ -2,12 +2,17 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
+        <ion-img
+          :src="require('@/assets/LogoBlue.png')"
+          style="width: 32px; margin-left: 10px"
+          slot="start"
+        ></ion-img>
         <ion-title> Social </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <div style="display: flex; justify-content: center">
-        <img src="../../assets/graphic/shop.jpg" style="max-width: 300px" />
+        <img src="@/assets/graphic/shop.jpg" style="max-width: 300px" />
       </div>
       <ion-card>
         <ion-card-header>

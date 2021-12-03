@@ -1,14 +1,14 @@
 <template>
   <ion-fab vertical="bottom" horizontal="end">
-    <ion-fab-button v-tooltip title="Kaffee brauen">
+    <ion-fab-button v-tooltip title="Kaffe brauen">
       <ion-icon :icon="cafeOutline" />
     </ion-fab-button>
 
     <ion-fab-list side="start">
-      <ion-fab-button>
+      <ion-fab-button v-tooltip title="Routinen">
         <ion-icon :icon="list" />
       </ion-fab-button>
-      <ion-fab-button color="success">
+      <ion-fab-button color="success" v-tooltip title="Routine erstellen">
         <ion-icon :icon="add" />
       </ion-fab-button>
     </ion-fab-list>
