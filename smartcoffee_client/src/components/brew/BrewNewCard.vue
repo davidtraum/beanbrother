@@ -36,7 +36,7 @@
       <ion-item>
         <ion-button slot="end" @click="startBrew()" :disabled="submittedBrew">
           <ion-label>Kaffee brauen</ion-label>
-          <ion-icon :icon="sendOutline" slot="end" />
+          <ion-icon :icon="colorFillOutline" slot="end" />
         </ion-button>
       </ion-item>
     </ion-card-content>
@@ -56,7 +56,7 @@ interface BrewInfo {
 }
 
 import { defineComponent, reactive, ref } from "vue";
-import { cafeOutline, sendOutline } from "ionicons/icons";
+import { cafeOutline, sendOutline, colorFillOutline } from "ionicons/icons";
 
 import {
   IonIcon,
@@ -95,7 +95,13 @@ export default defineComponent({
       strength: 5,
       save: true,
     });
-    return { brewInfo, submittedBrew: ref(false), cafeOutline, sendOutline };
+    return {
+      brewInfo,
+      submittedBrew: ref(false),
+      cafeOutline,
+      sendOutline,
+      colorFillOutline,
+    };
   },
   computed: {
     mugStyle(): string {
@@ -125,7 +131,7 @@ export default defineComponent({
   height: 100px;
   z-index: 2;
   &.hidden {
-      transform: scale(0);
+    transform: scale(0);
   }
 }
 </style>
