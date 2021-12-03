@@ -125,7 +125,7 @@ export default defineComponent({
   computed: {
     mugStyle(): string {
       return `transform: scale(${
-        0.5 + this.brewInfo.strength / 10
+        0.5 + (this.brewInfo.strength / 10) * 1.5
       }; color: rgb(${(this.brewInfo.strength / 10) * 255}, ${
         200 - (this.brewInfo.strength / 10) * 200
       }, ${200 - (this.brewInfo.strength / 10) * 200})`;
