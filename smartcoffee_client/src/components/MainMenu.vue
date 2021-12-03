@@ -47,7 +47,10 @@ import {
   IonItem,
   IonLabel,
   IonContent,
+  IonFooter,
   IonToggle,
+  IonImg,
+  IonText
 } from "@ionic/vue";
 
 import DesignService from "../service/DesignService";
@@ -63,6 +66,9 @@ export default defineComponent({
     IonItem,
     IonLabel,
     IonToggle,
+    IonText,
+    IonFooter,
+    IonImg,
     IonContent,
   },
   setup() {
