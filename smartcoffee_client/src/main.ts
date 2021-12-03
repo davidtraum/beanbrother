@@ -26,10 +26,10 @@ import './theme/variables.css';
 import { tooltip } from '@ionited/tooltip-vue';
 
 const app = createApp(App)
-  .use(IonicVue)
-  .use(router)
-  .directive('tooltip', tooltip);
-  
+    .use(IonicVue)
+    .use(router)
+    .directive('tooltip', tooltip);
+
 router.isReady().then(() => {
-  app.mount('#app');
+    app.mount('#app');
 });
