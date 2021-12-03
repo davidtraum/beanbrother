@@ -86,6 +86,7 @@ import {
   IonCardSubtitle,
   IonProgressBar,
   IonCardContent,
+  IonToggle,
   menuController,
   IonImg,
 } from "@ionic/vue";
@@ -108,6 +109,7 @@ export default defineComponent({
     IonButton,
     IonIcon,
     IonCard,
+    IonToggle,
     IonProgressBar,
     IonCardHeader,
     IonItem,

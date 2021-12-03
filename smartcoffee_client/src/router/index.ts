@@ -18,6 +18,14 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'brew',
         component: () => import('@/components/brew/Brew.vue')
+      },
+      {
+        path: 'history',
+        component: () => import('@/components/history/History.vue')
+      },
+      {
+        path: 'social',
+        component: () => import('@/components/social/Social.vue')
       }
     ]
   },
