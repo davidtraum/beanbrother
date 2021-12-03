@@ -12,7 +12,6 @@ interface DesignStatus {
 }
 
 class DesignService {
-
     status: DesignStatus = reactive({
         dark: false
     });
@@ -24,11 +23,12 @@ class DesignService {
     }
 
     setDarkMode(status: boolean) {
-        if(status) {
+        if (status) {
             document.body.classList.add('dark');
         } else {
             document.body.classList.remove('dark');
         }
+
         StorageService.set('darkmode', `${status}`);
         this.status.dark = status;
     }
