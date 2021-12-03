@@ -9,6 +9,10 @@
     <ion-content>
       <ion-list>
         <ion-item>
+          <ion-icon class="menuIcon" :icon="person" />
+          <ion-label>{{ username }}</ion-label>
+        </ion-item>
+        <ion-item>
           <ion-icon :icon="contrastSharp" class="menuIcon" />
           <ion-label>Dunkles Design</ion-label>
           <ion-toggle
@@ -57,13 +61,14 @@ import {
   IonToggle,
   IonImg,
   IonText,
-  modalController
+  modalController,
 } from "@ionic/vue";
 
 import DesignService from "../service/DesignService";
-import { contrastSharp, settingsSharp } from "ionicons/icons";
+import { contrastSharp, settingsSharp, person } from "ionicons/icons";
 import { IonIcon } from "@ionic/vue";
 import SettingsModal from "./settings/SettingsModal.vue";
+import StorageService from "../service/StorageService";
 
 export default defineComponent({
   name: "MainMenu",
@@ -85,21 +90,30 @@ export default defineComponent({
   setup() {
     return {
       DesignService,
+      StorageService,
       contrastSharp,
       settingsSharp,
+      person,
     };
+  },
+  computed: {
+    username(): string {
+      return StorageService.data.name;
+    },
   },
   methods: {
     onToggleDarkmode(event: CustomEvent) {
       DesignService.setDarkMode(event.detail.checked);
     },
     openSettings() {
-      modalController.create({
-        component: SettingsModal
-      }).then(modal => {
-        modal.present();
-      });
-    }
+      modalController
+        .create({
+          component: SettingsModal,
+        })
+        .then((modal) => {
+          modal.present();
+        });
+    },
   },
 });
 </script>

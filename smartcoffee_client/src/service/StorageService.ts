@@ -8,8 +8,19 @@ import { reactive } from "vue";
 class StorageService {
 
     data = reactive({
-        name: ''
+        name: 'unset'
     });
+
+    constructor() {
+        this.initDefaults();
+    }
+
+    async initDefaults() {
+        const name = await this.get('name');
+        if(name !== null) {
+            this.data.name = name;
+        }
+    }
     
     async set(key: string, value: string) {
         await Storage.set({ key, value });
@@ -23,6 +34,10 @@ class StorageService {
     async setName(name: string) {
         this.data.name = name;
         await this.set('name', name);
+    }
+
+    async clear() {
+        await Storage.clear();
     }
 }
 
