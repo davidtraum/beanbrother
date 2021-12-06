@@ -27,6 +27,10 @@ class StorageService {
         if(name !== null) {
             this.data.name = name;
         }
+        const routines = await this.get('routines');
+        if(routines !== null) {
+            this.data.routines = JSON.parse(routines);
+        }
     }
     
     async set(key: string, value: string) {
