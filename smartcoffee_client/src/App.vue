@@ -13,6 +13,8 @@ import MainMenu from "./components/MainMenu.vue";
 import StorageService from './service/StorageService';
 import WelcomeModal from "./components/welcome/WelcomeModal.vue";
 
+import {SplashScreen} from "@capacitor/splash-screen";
+
 export default defineComponent({
   name: 'App',
   components: {
@@ -29,6 +31,9 @@ export default defineComponent({
         }).then(modal => modal.present());
       }
     });
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 300);
   }
 });
 </script>

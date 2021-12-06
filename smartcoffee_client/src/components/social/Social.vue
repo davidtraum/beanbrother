@@ -2,8 +2,8 @@
   <ion-page>
     <toolbar title="Social" />
     <ion-content>
-      <div style="display: flex; justify-content: center">
-        <img src="@/assets/graphic/shop.png" style="max-width: 300px" />
+      <div style="display: flex;">
+        <img src="@/assets/graphic/shop.png" style="max-width: 300px; align-self: center;" />
       </div>
       <image-share-card />
       <ion-card>

@@ -1,10 +1,10 @@
 <template>
   <ion-page>
     <div class="ion-padding welcome">
-      <div class="content">
-        <img style="max-width: 200px" src="../../assets/LogoBlue.png" />
+      <div style="display: flex; flex-direction: column;">
+        <img style="max-width: 200px; align-self: center;" src="../../assets/LogoBlue.png" />
       </div>
-      <br>
+      <br />
       <div>
         <div class="content">
           <h1>Wilkommen!</h1>
@@ -16,6 +16,7 @@
           <ion-item>
             <ion-label position="floating"> Name: </ion-label>
             <ion-input
+              id="name-input"
               @keydown.enter="submit()"
               class="ion-border"
               v-model="name"
@@ -88,8 +89,13 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     z-index: -1;
-  mask-image: linear-gradient(to bottom, transparent 0%, transparent 70%, black 100%);
-}
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 70%,
+      black 100%
+    );
+  }
 }
 .content {
   display: flex;
