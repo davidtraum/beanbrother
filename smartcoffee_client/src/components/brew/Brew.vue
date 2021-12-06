@@ -19,12 +19,7 @@ import { defineComponent, ref } from "vue";
 
 import { menu, cafeOutline, sendOutline } from "ionicons/icons";
 
-import {
-  IonPage,
-  IonHeader,
-  IonContent,
-  menuController,
-} from "@ionic/vue";
+import { IonPage, IonHeader, IonContent, menuController } from "@ionic/vue";
 
 import CreateButton from "../generic/CreateButton.vue";
 import Toolbar from "../generic/Toolbar.vue";
@@ -38,10 +33,9 @@ export default defineComponent({
     IonContent,
     CreateButton,
     Toolbar,
-    BrewNewCard
+    BrewNewCard,
   },
   setup() {
-
     return {
       submittedBrew: ref(false),
       menu,
