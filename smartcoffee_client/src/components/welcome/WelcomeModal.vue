@@ -1,8 +1,11 @@
 <template>
   <ion-page>
     <div class="ion-padding welcome">
-      <div style="display: flex; flex-direction: column;">
-        <img style="max-width: 200px; align-self: center;" src="../../assets/LogoBlue.png" />
+      <div style="display: flex; flex-direction: column">
+        <img
+          style="max-width: 200px; align-self: center"
+          src="../../assets/newLogo.png"
+        />
       </div>
       <br />
       <div>
