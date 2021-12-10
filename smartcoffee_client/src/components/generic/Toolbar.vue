@@ -1,5 +1,5 @@
 <template>
-  <ion-toolbar mode="md">
+  <ion-toolbar color="primary" mode="md">
     <ion-img
       :src="require('@/assets/ToolbarLogo.png')"
       style="width: 32px; margin-left: 10px"

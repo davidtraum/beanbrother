@@ -1,10 +1,10 @@
 <template>
   <ion-page>
-    <ion-toolbar mode="md">
+    <ion-toolbar mode="md" color="primary">
       <ion-title> Einstellungen </ion-title>
       <ion-buttons slot="end">
         <ion-button @click="dismiss()" slot="icon-only">
-          <ion-icon :icon="close" />
+          <ion-icon :icon="close" color="danger" />
         </ion-button>
       </ion-buttons>
     </ion-toolbar>
@@ -14,11 +14,20 @@
         <ion-button color="danger" @click="clearStorage()">Leeren</ion-button>
       </ion-item>
       <ion-item>
-          <ion-label>Name:</ion-label>
-          <ion-input v-model="nameInput" />
-          <ion-button @click="saveName" :disabled="nameInput.length < 2 || nameInput.length > 30 || nameInput === StorageService.data.name">
-              {{nameInput === StorageService.data.name ? 'Gespeichert' : 'Speichern'}}
-          </ion-button>
+        <ion-label>Name:</ion-label>
+        <ion-input v-model="nameInput" />
+        <ion-button
+          @click="saveName"
+          :disabled="
+            nameInput.length < 2 ||
+            nameInput.length > 30 ||
+            nameInput === StorageService.data.name
+          "
+        >
+          {{
+            nameInput === StorageService.data.name ? "Gespeichert" : "Speichern"
+          }}
+        </ion-button>
       </ion-item>
     </ion-content>
   </ion-page>
@@ -60,33 +69,41 @@ export default defineComponent({
     IonLabel,
   },
   setup() {
-    return { close, settings, StorageService, nameInput: ref(StorageService.data.name) };
+    return {
+      close,
+      settings,
+      StorageService,
+      nameInput: ref(StorageService.data.name),
+    };
   },
   methods: {
     dismiss() {
       modalController.dismiss();
     },
     clearStorage() {
-        alertController.create({
-            header: 'Speicher',
-            message: 'Möchtest du den gesamten Speicherinhalt löschen? (Name, Rezepte...)',
-            buttons: [
-                {role: 'abort', text: 'Abbrechen'},
-                {role: 'destructive', text: 'Ja'}
-            ]
-        }).then(alert => {
-            alert.present().then(() => {
-                alert.onDidDismiss().then(result => {
-                    if(result.role === 'destructive') {
-                        StorageService.clear();
-                    }
-                });
-            });
+      alertController
+        .create({
+          header: "Speicher",
+          message:
+            "Möchtest du den gesamten Speicherinhalt löschen? (Name, Rezepte...)",
+          buttons: [
+            { role: "abort", text: "Abbrechen" },
+            { role: "destructive", text: "Ja" },
+          ],
         })
+        .then((alert) => {
+          alert.present().then(() => {
+            alert.onDidDismiss().then((result) => {
+              if (result.role === "destructive") {
+                StorageService.clear();
+              }
+            });
+          });
+        });
     },
     async saveName() {
-        await StorageService.setName(this.nameInput);
-    }
+      await StorageService.setName(this.nameInput);
+    },
   },
 });
 </script>

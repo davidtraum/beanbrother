@@ -2,7 +2,7 @@
 <template>
   <ion-menu side="end" menu-id="main" content-id="main">
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
         <ion-title> Beanü </ion-title>
       </ion-toolbar>
     </ion-header>
