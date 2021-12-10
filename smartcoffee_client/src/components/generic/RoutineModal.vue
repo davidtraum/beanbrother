@@ -28,8 +28,7 @@
           cancel-text="Abbrechen"
           done-text="Fertig"
           display-format="HH:mm"
-          v-model="routineData.alarmTime"
-          @ionChange="setDate($event)"
+          v-model="dateInput"
         ></ion-datetime>
       </ion-item>
       <ion-item lines="none">
@@ -96,6 +95,7 @@ export default defineComponent({
   setup() {
     const activeChips: Ref<Array<number>> = ref([]);
     const days: Array<string> = ["M", "D", "M", "D", "F", "S", "S"];
+    const dateInput = ref(new Date().toISOString());
     const routineData: RoutineData = reactive({
       title: "",
       desc: "",
@@ -105,6 +105,7 @@ export default defineComponent({
     return {
       close,
       days,
+      dateInput,
       activeChips,
       routineData,
     };
@@ -125,11 +126,9 @@ export default defineComponent({
       return this.activeChips.includes(index);
     },
     createRoutine() {
+      this.routineData.alarmTime = new Date(this.dateInput).getTime();
       console.log(this.routineData);
       modalController.dismiss(this.routineData);
-    },
-    setDate(input: string) {
-      this.routineData.alarmTime = new Date(input).getTime();
     },
   },
 });
