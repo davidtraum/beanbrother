@@ -16,11 +16,11 @@
     <ion-list>
       <ion-item>
         <ion-label position="floating">Titel</ion-label>
-        <ion-input />
+        <ion-input v-model="routineData.title" />
       </ion-item>
       <ion-item>
         <ion-label position="floating">Beschreibung</ion-label>
-        <ion-input />
+        <ion-input v-model="routineData.desc" />
       </ion-item>
       <ion-item>
         <ion-label>Uhrzeit</ion-label>
@@ -28,6 +28,8 @@
           cancel-text="Abbrechen"
           done-text="Fertig"
           display-format="HH:mm"
+          v-model="routineData.alarmTime"
+          @ionChange="setDate($event)"
         ></ion-datetime>
       </ion-item>
       <ion-item lines="none">
@@ -35,77 +37,41 @@
           >Wiederholen</ion-label
         >
         <div class="days">
-          <ion-chip
+          <div
+            :class="{ checked: isChipActive(index) }"
             class="day"
-            color="secondary"
             v-for="(item, index) of days"
             :key="index"
             @click="toggleChip(index)"
-            :outline="isChipActive(index)"
           >
-            {{ item }}
-          </ion-chip>
+            <span>
+              {{ item }}
+            </span>
+          </div>
         </div>
-        <!--
-        <p style="display: flex">
-          <ion-chip
-            color="primary"
-            style="margin-left: 0px"
-            :outline="activeChip"
-            >M</ion-chip
-          >
-          <ion-chip color="primary" @click="activateChip" :outline="activeChip"
-            >D</ion-chip
-          >
-          <ion-chip color="primary" @click="activateChip" :outline="activeChip"
-            >M</ion-chip
-          >
-          <ion-chip color="primary" @click="activateChip" :outline="activeChip"
-            >D</ion-chip
-          >
-          <ion-chip color="primary" @click="activateChip" :outline="activeChip"
-            >F</ion-chip
-          >
-          <ion-chip color="primary" @click="activateChip" :outline="activeChip"
-            >S</ion-chip
-          >
-          <ion-chip color="primary" @click="activateChip" :outline="activeChip"
-            >S</ion-chip
-          >
-        </p>
-        -->
-        <!-- <ion-select
-          value="12"
-          placeholder="Nie"
-          multiple
-          cancel-text="Abbrechen"
-        >
-          <ion-select-option value="01">Mo</ion-select-option>
-          <ion-select-option value="02">Di</ion-select-option>
-          <ion-select-option value="03">Mi</ion-select-option>
-          <ion-select-option value="04">Do</ion-select-option>
-          <ion-select-option value="05">Fr</ion-select-option>
-          <ion-select-option value="06">Sa</ion-select-option>
-          <ion-select-option value="07">So</ion-select-option>
-        </ion-select> -->
       </ion-item>
       <ion-item lines="none">
-        <ion-button fill="clear" size="default" slot="end" color="secondary"
+        <ion-button
+          fill="clear"
+          size="default"
+          slot="end"
+          color="secondary"
+          @click="createRoutine()"
           >Routine erstellen</ion-button
         >
       </ion-item>
     </ion-list>
   </ion-content>
-  <!-- <ion-footer ref="footer" class="ion-no-border createRoutine">
-    <ion-item>
-      <ion-button fill="clear" size="default" slot="end"
-        >Routine erstellen</ion-button
-      >
-    </ion-item>
-  </ion-footer> -->
 </template>
 <script lang="ts">
-import { defineComponent, Ref, ref } from "vue";
+interface RoutineData {
+  title: string;
+  desc: string;
+  alarmTime: number;
+  repeatDays: Array<number>;
+}
+
+import { defineComponent, Ref, ref, reactive } from "vue";
 import {
   IonIcon,
   IonItem,
@@ -130,10 +96,17 @@ export default defineComponent({
   setup() {
     const activeChips: Ref<Array<number>> = ref([]);
     const days: Array<string> = ["M", "D", "M", "D", "F", "S", "S"];
+    const routineData: RoutineData = reactive({
+      title: "",
+      desc: "",
+      alarmTime: 0,
+      repeatDays: activeChips,
+    });
     return {
       close,
       days,
       activeChips,
+      routineData,
     };
   },
   methods: {
@@ -151,6 +124,13 @@ export default defineComponent({
     isChipActive(index: number): boolean {
       return this.activeChips.includes(index);
     },
+    createRoutine() {
+      console.log(this.routineData);
+      modalController.dismiss(this.routineData);
+    },
+    setDate(input: string) {
+      this.routineData.alarmTime = new Date(input).getTime();
+    },
   },
 });
 </script>
@@ -163,8 +143,24 @@ export default defineComponent({
   margin: 0;
 }
 .day {
+  background: rgba(191, 153, 136, 0.2);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  transition: 150ms;
+  margin-right: 10px;
+  border: solid 1px rgba(191, 153, 136, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   &:nth-child(1) {
     margin-left: 0 !important;
+  }
+  &.checked {
+    background: rgba(191, 153, 136, 0);
+    border: solid 1px rgba(191, 153, 136, 0.1);
   }
 }
 </style>
