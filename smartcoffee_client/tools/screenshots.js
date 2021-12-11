@@ -25,6 +25,18 @@ const resolutions = [
         id: 'tablet',
         size: [720, 480],
         rotated: true
+    },
+    {
+      id: 'iphone_lg',
+      size: [1242, 2688]
+    },
+    {
+     id: 'iphone_sm',
+     size: [1242, 2208]
+    },
+    {
+      id: 'ipad',
+      size: [2048, 2732]
     }
 ];
 
