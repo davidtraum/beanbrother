@@ -3,7 +3,7 @@
     class="routine-card"
     :class="{ 'routine-deleted': deleted, transition: panOffset <= 0 }"
     ref="swipeCard"
-    :style="{ 'margin-left': `${panOffset}px`, cursor: panOffset > 0 ? 'move' : 'default'}"
+    :style="{ 'margin-left': `${panOffset + 16}px`, cursor: panOffset > 0 ? 'move' : 'default'}"
   >
   <ion-icon class="delete-indicator transition" :icon="trashOutline" color="danger" :style="{transform: `translateY(-50%) scale(${1 + (panOffset / innerWidth)})`}"/>
     <ion-card-header>
@@ -189,7 +189,7 @@ export default defineComponent({
 }
 .delete-indicator {
   position: absolute;
-  left: -42px;
+  left: -45px;
   top: 50%;
   font-size: 32px;
   pointer-events: none;

@@ -6,7 +6,7 @@
     <ion-content>
       <brew-new-card />
       <create-button />
-      <div class="routine-list">
+      <div class="routine-list ion-padding">
         <routine-card
           v-for="(routine, index) of StorageService.data.routines"
           class="routine transition"
