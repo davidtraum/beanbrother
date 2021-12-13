@@ -1,5 +1,5 @@
 <template>
-  <ion-card>
+  <ion-card class="routine" :class="{deleted: deleted}">
     <ion-card-header>
       <ion-card-title>
         <ion-label>{{ routine.data.title }}</ion-label>
@@ -41,7 +41,7 @@
   </ion-card>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { checkmarkOutline, trashOutline } from "ionicons/icons";
 import StorageService from "../../service/StorageService";
 import {
@@ -88,6 +88,7 @@ export default defineComponent({
   setup() {
     const days: Array<string> = ["M", "D", "M", "D", "F", "S", "S"];
     return {
+      deleted: ref(false),
       checkmarkOutline,
       trashOutline,
       days,
@@ -101,8 +102,11 @@ export default defineComponent({
         return false;
       }
     },
-    async deleteRoutine() {
-      await StorageService.removeRoutine(this.routine as RoutineData);
+    deleteRoutine() {
+      this.deleted = true;
+      setTimeout(() => {
+        StorageService.removeRoutine(this.routine as RoutineData);
+      }, 500);
     },
   },
 });
@@ -134,6 +138,13 @@ export default defineComponent({
   &.checked {
     background: rgba(191, 153, 136, 0);
     border: solid 1px rgba(191, 153, 136, 0.1);
+  }
+}
+.routine {
+  transition: 300ms;
+  &.deleted {
+    transform: translateX(100%);
+    opacity: 0;
   }
 }
 </style>
