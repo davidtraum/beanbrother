@@ -34,7 +34,11 @@
       </ion-item>
       <ion-item lines="none">
         <ion-button slot="end" fill="clear">
-          <ion-icon :icon="trashOutline" color="danger" />
+          <ion-icon
+            :icon="trashOutline"
+            color="danger"
+            @click="deleteRoutine()"
+          />
         </ion-button>
       </ion-item>
     </ion-card-content>
@@ -43,6 +47,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { checkmarkOutline, trashOutline } from "ionicons/icons";
+import StorageService from "../../service/StorageService";
 import {
   IonIcon,
   IonCard,
@@ -54,6 +59,7 @@ import {
   IonCardSubtitle,
   IonCardContent,
 } from "@ionic/vue";
+import { RoutineData } from "@/lib/RoutineData";
 
 export default defineComponent({
   name: "RoutineCard",
@@ -71,6 +77,7 @@ export default defineComponent({
   props: {
     routine: {
       type: Object,
+      required: true,
     },
   },
   computed: {
@@ -98,19 +105,10 @@ export default defineComponent({
         return false;
       }
     },
+    async deleteRoutine() {
+      await StorageService.removeRoutine(this.routine.data as RoutineData);
+    },
   },
-  // props{
-  //   title:{
-  //     type: String,
-  //   },
-  //   date:{
-  //     type: Object,
-  //   }
-  //   time:{
-  //     type: Object
-  //   }
-  // },
-  // setup() {},
 });
 </script>
 <style lang="scss" scoped>
