@@ -69,7 +69,7 @@ export default defineComponent({
   position: relative;
   .routine {
     position: absolute;
-    width: calc(100% - 2em);
+    width: calc(100% - 22px);
     height: 250px;
     left: 0;
   }
