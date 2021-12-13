@@ -43,7 +43,11 @@ export default defineComponent({
       });
       await modal.present();
       const result = (await modal.onDidDismiss()) as RoutineData;
-      await StorageService.addRoutine(result);
+      if(result.title === '__demo') {
+        for(let i = 0; i<10; i++) await StorageService.addRoutine(result);
+      } else {
+        await StorageService.addRoutine(result);
+      }
     },
   },
 });
