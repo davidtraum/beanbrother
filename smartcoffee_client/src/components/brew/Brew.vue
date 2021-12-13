@@ -6,12 +6,15 @@
     <ion-content>
       <brew-new-card />
       <create-button />
-      {{StorageService.data.routines.length}}
-      <routine-card
-        v-for="(routine) of StorageService.data.routines"
-        :key="routine"
-        :routine="routine"
-      />
+      <div class="routine-list">
+        <routine-card
+          v-for="(routine, index) of StorageService.data.routines"
+          class="routine transition"
+          :style="{ top: `${index * 260}px` }"
+          :key="routine"
+          :routine="routine"
+        />
+      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -60,3 +63,15 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.routine-list {
+  position: relative;
+  .routine {
+    position: absolute;
+    width: calc(100% - 2em);
+    height: 250px;
+    left: 0;
+  }
+}
+</style>

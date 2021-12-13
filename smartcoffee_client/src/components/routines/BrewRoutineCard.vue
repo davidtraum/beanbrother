@@ -1,5 +1,5 @@
 <template>
-  <ion-card class="routine-card" :class="{ 'routine-deleted': deleted }">
+  <ion-card class="routine-card" :class="{ 'routine-deleted': deleted }" ref="swipeCard">
     <ion-card-header>
       <ion-card-title>
         <ion-label>{{ routine.data.title }}</ion-label>
@@ -54,6 +54,7 @@ import {
   IonButton,
   IonCardSubtitle,
   IonCardContent,
+  createGesture,
 } from "@ionic/vue";
 import { RoutineData } from "@/lib/RoutineData";
 
@@ -84,6 +85,17 @@ export default defineComponent({
         return new Date(0).toISOString();
       }
     },
+  },
+  mounted() {
+    const gestureController = createGesture({
+      el: (this.$refs.swipeCard as Node),
+      threshold: 0,
+      gestureName: 'swipe-delete',
+      onMove: event => {
+          console.log(event);
+      }
+    });
+    console.log(this.$refs.swipeCard);
   },
   setup() {
     const days: Array<string> = ["M", "D", "M", "D", "F", "S", "S"];
