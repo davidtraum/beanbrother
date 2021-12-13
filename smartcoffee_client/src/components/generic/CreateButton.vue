@@ -20,7 +20,9 @@ import { defineComponent } from "vue";
 import { add } from "ionicons/icons";
 
 import { IonFab, IonFabButton, IonIcon, modalController } from "@ionic/vue";
-import RoutineModal from "./RoutineModal.vue";
+import RoutineModal from "../routines/RoutineModal.vue";
+import { RoutineData } from "../../lib/RoutineData";
+import StorageService from "../../service/StorageService";
 
 export default defineComponent({
   name: "CreateButton",
@@ -39,7 +41,9 @@ export default defineComponent({
       const modal = await modalController.create({
         component: RoutineModal,
       });
-      return modal.present();
+      await modal.present();
+      const result = (await modal.onDidDismiss()) as RoutineData;
+      StorageService.addRoutine(result);
     },
   },
 });

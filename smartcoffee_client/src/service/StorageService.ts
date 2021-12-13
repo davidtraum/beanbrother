@@ -4,18 +4,13 @@
  */
 import { Storage } from "@capacitor/storage";
 import { reactive } from "vue";
-
-export interface RoutineInfo {
-    description: string;
-    time: number;
-    repeat: number;
-}
+import { RoutineData } from "../lib/RoutineData";
 
 class StorageService {
 
     data = reactive({
         name: 'unset',
-        routines: [] as Array<RoutineInfo>
+        routines: [] as Array<RoutineData>
     });
 
     constructor() {
@@ -24,15 +19,15 @@ class StorageService {
 
     async initDefaults() {
         const name = await this.get('name');
-        if(name !== null) {
+        if (name !== null) {
             this.data.name = name;
         }
         const routines = await this.get('routines');
-        if(routines !== null) {
+        if (routines !== null) {
             this.data.routines = JSON.parse(routines);
         }
     }
-    
+
     async set(key: string, value: string) {
         await Storage.set({ key, value });
     }
@@ -51,7 +46,7 @@ class StorageService {
         await Storage.clear();
     }
 
-    async addRoutine(routine: RoutineInfo) {
+    async addRoutine(routine: RoutineData) {
         this.data.routines.push(routine);
         await this.set('routines', JSON.stringify(this.data.routines));
     }

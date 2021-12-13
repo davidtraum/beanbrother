@@ -63,13 +63,6 @@
   </ion-content>
 </template>
 <script lang="ts">
-interface RoutineData {
-  title: string;
-  desc: string;
-  alarmTime: number;
-  repeatDays: Array<number>;
-}
-
 import { defineComponent, Ref, ref, reactive } from "vue";
 import {
   IonIcon,
@@ -81,6 +74,7 @@ import {
   // IonFooter,
 } from "@ionic/vue";
 import { close } from "ionicons/icons";
+import { RoutineData } from "../../lib/RoutineData";
 
 export default defineComponent({
   name: "RoutineModal",
