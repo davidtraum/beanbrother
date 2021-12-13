@@ -33,12 +33,8 @@
         </div>
       </ion-item>
       <ion-item lines="none">
-        <ion-button slot="end" fill="clear">
-          <ion-icon
-            :icon="trashOutline"
-            color="danger"
-            @click="deleteRoutine()"
-          />
+        <ion-button slot="end" fill="clear" @click="deleteRoutine()">
+          <ion-icon :icon="trashOutline" color="danger" />
         </ion-button>
       </ion-item>
     </ion-card-content>
@@ -106,7 +102,7 @@ export default defineComponent({
       }
     },
     async deleteRoutine() {
-      await StorageService.removeRoutine(this.routine.data as RoutineData);
+      await StorageService.removeRoutine(this.routine as RoutineData);
     },
   },
 });

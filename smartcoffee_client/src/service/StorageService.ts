@@ -52,9 +52,7 @@ class StorageService {
     }
 
     async removeRoutine(routine: RoutineData) {
-        console.log("Removing", routine);
         const index = this.data.routines.indexOf(routine);
-        console.log("Remove index: ", index);
         if (index >= 0) {
             this.data.routines.splice(index, 1);
             await this.set('routines', JSON.stringify(this.data.routines));
