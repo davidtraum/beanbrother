@@ -6,6 +6,12 @@
     <ion-content>
       <brew-new-card />
       <create-button />
+      Anzahl: {{ StorageService.data.routines.length }}
+      <routine-card
+        v-for="(routine, index) of StorageService.data.routines"
+        :key="index"
+        :routine="routine"
+      />
     </ion-content>
   </ion-page>
 </template>
@@ -24,6 +30,8 @@ import { IonPage, IonHeader, IonContent, menuController } from "@ionic/vue";
 import CreateButton from "../generic/CreateButton.vue";
 import Toolbar from "../generic/Toolbar.vue";
 import BrewNewCard from "./BrewNewCard.vue";
+import RoutineCard from "../routines/BrewRoutineCard.vue";
+import StorageService from "../../service/StorageService";
 
 export default defineComponent({
   name: "Home",
@@ -34,6 +42,7 @@ export default defineComponent({
     CreateButton,
     Toolbar,
     BrewNewCard,
+    RoutineCard,
   },
   setup() {
     return {
@@ -41,6 +50,7 @@ export default defineComponent({
       menu,
       cafeOutline,
       sendOutline,
+      StorageService,
     };
   },
   methods: {

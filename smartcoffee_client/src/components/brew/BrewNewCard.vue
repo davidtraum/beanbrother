@@ -29,11 +29,11 @@
           slot="end"
         />
       </ion-item>
-      <ion-item>
+      <ion-item lines="none">
         <ion-label> Speichern </ion-label>
         <ion-toggle slot="end" v-model="brewInfo.save" />
       </ion-item>
-      <ion-item>
+      <ion-item lines="none">
         <ion-button
           size="default"
           slot="end"

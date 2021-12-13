@@ -43,7 +43,7 @@ export default defineComponent({
       });
       await modal.present();
       const result = (await modal.onDidDismiss()) as RoutineData;
-      StorageService.addRoutine(result);
+      await StorageService.addRoutine(result);
     },
   },
 });
