@@ -1,5 +1,11 @@
 <template>
-  <ion-card class="routine-card" :class="{ 'routine-deleted': deleted }" ref="swipeCard">
+  <ion-card
+    class="routine-card"
+    :class="{ 'routine-deleted': deleted, transition: panOffset <= 0 }"
+    ref="swipeCard"
+    :style="{ 'margin-left': `${panOffset}px`, cursor: panOffset > 0 ? 'move' : 'default'}"
+  >
+  <ion-icon class="delete-indicator transition" :icon="trashOutline" color="danger" :style="{transform: `translateY(-50%) scale(${1 + (panOffset / innerWidth)})`}"/>
     <ion-card-header>
       <ion-card-title>
         <ion-label>{{ routine.data.title }}</ion-label>
@@ -57,6 +63,7 @@ import {
   createGesture,
 } from "@ionic/vue";
 import { RoutineData } from "@/lib/RoutineData";
+import {Toast} from "@capacitor/toast";
 
 export default defineComponent({
   name: "RoutineCard",
@@ -85,22 +92,41 @@ export default defineComponent({
         return new Date(0).toISOString();
       }
     },
+    innerWidth(): number {
+      return window.innerWidth;
+    }
   },
   mounted() {
     const gestureController = createGesture({
-      el: (this.$refs.swipeCard as Node),
+      el: (this.$refs.swipeCard as any).$el as Node,
       threshold: 0,
-      gestureName: 'swipe-delete',
-      onMove: event => {
-          console.log(event);
-      }
+      gestureName: "swipe-delete",
+      onMove: (event) => {
+        if (event.deltaX > 0) {
+          this.panOffset = event.deltaX;
+        }
+      },
+      onEnd: (event) => {
+          if (this.panOffset > window.innerWidth * 0.5) {
+            this.panOffset = 0;
+            this.deleteRoutine();
+            gestureController.destroy();
+            Toast.show({
+              text: 'Routine gelöscht.',
+            });
+          } else {
+            this.panOffset = 0;
+          }
+      },
     });
+    gestureController.enable();
     console.log(this.$refs.swipeCard);
   },
   setup() {
     const days: Array<string> = ["M", "D", "M", "D", "F", "S", "S"];
     return {
       deleted: ref(false),
+      panOffset: ref(0),
       checkmarkOutline,
       trashOutline,
       days,
@@ -154,10 +180,21 @@ export default defineComponent({
   }
 }
 .routine-card {
-  transition: 300ms;
+  user-select: none;
+  overflow: visible;
   &.routine-deleted {
     opacity: 0;
     transform: translateX(100%);
+  }
+}
+.delete-indicator {
+  position: absolute;
+  left: -42px;
+  top: 50%;
+  font-size: 32px;
+  pointer-events: none;
+  &.visible {
+    opacity: 1;
   }
 }
 </style>
