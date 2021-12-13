@@ -6,9 +6,10 @@
     <ion-content>
       <brew-new-card />
       <create-button />
+      {{StorageService.data.routines.length}}
       <routine-card
-        v-for="(routine, index) of StorageService.data.routines"
-        :key="index"
+        v-for="(routine) of StorageService.data.routines"
+        :key="routine"
         :routine="routine"
       />
     </ion-content>

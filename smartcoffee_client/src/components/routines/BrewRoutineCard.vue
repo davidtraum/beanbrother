@@ -1,5 +1,5 @@
 <template>
-  <ion-card class="routine" :class="{deleted: deleted}">
+  <ion-card class="routine-card" :class="{ 'routine-deleted': deleted }">
     <ion-card-header>
       <ion-card-title>
         <ion-label>{{ routine.data.title }}</ion-label>
@@ -111,6 +111,7 @@ export default defineComponent({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .days {
   display: flex;
@@ -140,11 +141,11 @@ export default defineComponent({
     border: solid 1px rgba(191, 153, 136, 0.1);
   }
 }
-.routine {
+.routine-card {
   transition: 300ms;
-  &.deleted {
-    transform: translateX(100%);
+  &.routine-deleted {
     opacity: 0;
+    transform: translateX(100%);
   }
 }
 </style>
