@@ -42,11 +42,14 @@ export default defineComponent({
         component: RoutineModal,
       });
       await modal.present();
-      const result = (await modal.onDidDismiss()) as RoutineData;
-      if(result.title === '__demo') {
-        for(let i = 0; i<10; i++) await StorageService.addRoutine(result);
-      } else {
-        await StorageService.addRoutine(result);
+      const result = await modal.onDidDismiss();
+      if(result.data !== undefined) {
+        const data = result as RoutineData;
+        if(data.title === '__demo') {
+          for(let i = 0; i<10; i++) await StorageService.addRoutine(data);
+        } else {
+          await StorageService.addRoutine(data);
+        }
       }
     },
   },
