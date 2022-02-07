@@ -8,7 +8,7 @@ Abhängigkeiten installieren:
 > npm i
 
 Development-Server starten:
-> npx ionic serve
+> npm run serve
 
 Build erzeugen:
 > npx ionic build
