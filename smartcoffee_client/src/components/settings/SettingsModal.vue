@@ -29,6 +29,15 @@
           }}
         </ion-button>
       </ion-item>
+      <ion-item>
+        <ion-label>Server-IP:</ion-label>
+        <ion-input v-model="ipInput" />
+        <ion-button @click="saveIp()" :disabled="Client.settings.ip.length < 2 || Client.settings.ip.length > 30 || ipInput === Client.settings.ip">
+          {{
+            ipInput === Client.settings.ip ? 'Gespeichert' : 'Speichern'
+          }}
+        </ion-button>
+      </ion-item>
     </ion-content>
   </ion-page>
 </template>
@@ -50,11 +59,13 @@ import {
   IonButtons,
   IonButton,
   IonIcon,
+  IonItem,
   IonInput,
   IonLabel,
   alertController,
 } from "@ionic/vue";
 import StorageService from "../../service/StorageService";
+import Client from "../../lib/Client";
 
 export default defineComponent({
   components: {
@@ -64,6 +75,7 @@ export default defineComponent({
     IonTitle,
     IonInput,
     IonButtons,
+    IonItem,
     IonButton,
     IonIcon,
     IonLabel,
@@ -73,7 +85,9 @@ export default defineComponent({
       close,
       settings,
       StorageService,
+      Client,
       nameInput: ref(StorageService.data.name),
+      ipInput: ref(Client.settings.ip)
     };
   },
   methods: {
@@ -104,6 +118,10 @@ export default defineComponent({
     async saveName() {
       await StorageService.setName(this.nameInput);
     },
+    async saveIp() {
+      Client.settings.ip = this.ipInput;
+      await Client.saveSettings();
+    }
   },
 });
 </script>

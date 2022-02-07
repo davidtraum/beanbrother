@@ -79,6 +79,8 @@ import {
   IonToggle,
 } from "@ionic/vue";
 
+import Client from "../../lib/Client";
+
 export default defineComponent({
   name: "BrewNewCard",
   components: {
@@ -120,7 +122,8 @@ export default defineComponent({
     },
   },
   methods: {
-    startBrew() {
+    async startBrew() {
+      await Client.get('brew');
       this.submittedBrew = true;
       setTimeout(() => {
         this.submittedBrew = false;
