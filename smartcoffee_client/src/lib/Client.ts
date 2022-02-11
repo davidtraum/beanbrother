@@ -23,7 +23,7 @@ export default new class Client {
 
     async restoreSettings() {
         const data = await StorageService.get("client_settings", null);
-        if(data !== null) {
+        if (data !== null) {
             const parsed = JSON.parse(data) as ClientSettings;
             this.settings = parsed;
         }
@@ -37,7 +37,7 @@ export default new class Client {
         return new Promise(resolve => {
             const fetchTarget = `http://${this.settings.ip}/${url}`;
             fetch(fetchTarget).then(response => {
-                if(response.status === 200) {
+                if (response.status === 200) {
                     response.text().then(text => {
                         resolve(text);
                     });
@@ -50,12 +50,42 @@ export default new class Client {
             }).catch(error => {
                 console.log(error);
                 toastController.create({
-                    message: `Fehler: Server nicht erreichbar. Überprüfen sie die Server-IP in den Einstellungen.`
+                    message: `Fehler: Server nicht erreichbar. Überprüfen Sie die Server-IP in den Einstellungen.`
                 }).then(toast => toast.present());
                 resolve(null);
             });
         });
     }
 
+    async post(url: string, data: any, responseMessage: string | null = null): Promise<string | null> {
+        return new Promise(resolve => {
+            const fetchTarget = `http://${this.settings.ip}/${url}`;
 
+            fetch(fetchTarget, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                response.json().then(apiResponse => {
+                    if (apiResponse.status === 'error') {
+                        resolve(null);
+                    }
+
+                    if (responseMessage) {
+                        toastController.create({
+                            message: responseMessage
+                        });
+                    }
+
+                    resolve('Success');
+                });
+            }).catch(() => {
+                toastController.create({
+                    message: `Fehler: Server nicht erreichbar. Überprüfen Sie die Server-IP in den Einstellungen.`
+                }).then(toast => toast.present());
+            });
+        });
+    }
 }

@@ -77,6 +77,7 @@ import {
   IonProgressBar,
   IonCardContent,
   IonToggle,
+  toastController
 } from "@ionic/vue";
 
 import Client from "../../lib/Client";
@@ -124,7 +125,17 @@ export default defineComponent({
   },
   methods: {
     async startBrew() {
-      await Client.get(`brew/?strength=${this.brewInfo.strength}&title=${this.brewInfo.title ? this.brewInfo.title : 'none'}`);
+      const apiResponse = await Client.post(`brew`, {
+        strength: this.brewInfo.strength,
+        title: this.brewInfo.title
+      });
+
+      if (!apiResponse) {
+        toastController.create({
+          message: 'Bei der Anfrage zum Brauen ist ein unerwarteter Fehler aufgetreten'
+        }).then(toast => toast.present());
+      }
+
       this.submittedBrew = true;
       setTimeout(() => {
         this.submittedBrew = false;
