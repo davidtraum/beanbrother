@@ -20,8 +20,8 @@
         <ion-input v-model="brewInfo.title" />
       </ion-item>
       <ion-item>
-        <ion-label> Stärke </ion-label>
-        <ion-range min="0" max="10" pin snaps v-model="brewInfo.strength" />
+        <ion-label class="ion-text-wrap"> Wassermenge (ml) </ion-label>
+        <ion-range min="125" max="250" pin step="25" snaps v-model="brewInfo.strength" />
         <ion-icon
           :style="mugStyle"
           class="transition"
@@ -101,7 +101,7 @@ export default defineComponent({
   setup() {
     const brewInfo: BrewInfo = reactive({
       title: "",
-      strength: 5,
+      strength: 250,
       save: true,
     });
     return {
@@ -114,11 +114,12 @@ export default defineComponent({
   },
   computed: {
     mugStyle(): string {
+      const scaleFactor= (this.brewInfo.strength - 125) / (250 - 125);
       return `transform: scale(${
-        0.5 + (this.brewInfo.strength / 10) * 1.5
-      }; color: rgb(${(this.brewInfo.strength / 10) * 255}, ${
-        200 - (this.brewInfo.strength / 10) * 200
-      }, ${200 - (this.brewInfo.strength / 10) * 200})`;
+        0.5 + (scaleFactor) * 1.5
+      }; color: rgb(${(scaleFactor) * 255}, ${
+        200 - (scaleFactor) * 200
+      }, ${200 - (scaleFactor) * 200})`;
     },
   },
   methods: {
