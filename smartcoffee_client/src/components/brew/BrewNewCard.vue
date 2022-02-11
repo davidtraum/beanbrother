@@ -123,7 +123,7 @@ export default defineComponent({
   },
   methods: {
     async startBrew() {
-      await Client.get('brew');
+      await Client.get(`brew/?strength=${this.brewInfo.strength}&title=${this.brewInfo.title ? this.brewInfo.title : 'none'}`);
       this.submittedBrew = true;
       setTimeout(() => {
         this.submittedBrew = false;
